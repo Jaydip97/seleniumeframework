@@ -1,4 +1,4 @@
-package com.training.regression.tests;
+package com.training.sanity.tests;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -10,27 +10,25 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.training.bean.LoginBean;
-import com.training.dao.ELearningDAO;
-import com.training.dataproviders.LoginDataProviders;
 import com.training.generics.ScreenShot;
 import com.training.pom.LoginPOM;
 import com.training.pom.LogoutPOM;
+import com.training.pom.homepagePOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class LoginExcelTest {
+public class romanticshow {
+
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
-	private LogoutPOM logoutPOM;
+	private homepagePOM HomepagePOM;
 	private static Properties properties;
 	private ScreenShot screenShot;
 
-
+	
 
 	@BeforeTest
 	public void setUp() throws Exception {
@@ -38,28 +36,31 @@ public class LoginExcelTest {
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
 		properties.load(inStream);
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver);
-		logoutPOM=new LogoutPOM(driver);
+		loginPOM = new LoginPOM(driver); 
+		HomepagePOM=new  homepagePOM(driver);
 		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot(driver);
-		// open the browser
+		screenShot = new ScreenShot(driver); 
+		// open the browser 
 		driver.get(baseUrl);
 	}
-
+	
 	@AfterTest
 	public void tearDown() throws Exception {
+		Thread.sleep(1000);
 		driver.quit();
 	}
-
-	@Test(dataProvider = "excel-inputs", dataProviderClass = LoginDataProviders.class)
-	public void loginDBTest(String userName, String password) {
-		loginPOM.sendUserName(userName);
-		loginPOM.sendPassword(password);
-		loginPOM.clickLoginBtn();
-        logoutPOM.logout();
-
-//		screenShot.captureScreenShot(userName);
-        
+//	@Test(priority=0)
+//	public void validLoginTest() {
+//		loginPOM.sendUserName("Admin");
+//		loginPOM.sendPassword("admin123");
+//		loginPOM.clickLoginBtn(); 
+//		screenShot.captureScreenShot("First");
+//	}
+	
+	@Test
+	
+	 public void romanticshow() {
+		HomepagePOM.romanticshowf();
 	}
-
+	 
 }
